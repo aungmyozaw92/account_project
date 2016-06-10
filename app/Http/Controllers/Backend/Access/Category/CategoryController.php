@@ -31,5 +31,30 @@ class CategoryController extends Controller
         return redirect()->route('admin.access.category.index')->withFlashSuccess(trans('alerts.backend.category.created'));
     }
 
+    public function edit($id)
+    {
+        $category = $this->category->findOrThrowException($id, true);
+
+        return view('backend.access.category.edit')->withCategory($category);
+
+    }
+
+    /**
+     * @param  $id
+     * @param  UpdateRoleRequest $request
+     * @return mixed
+     */
+    public function update($id, StoreCategoryRequest $request)
+    {
+        $this->category->update($id, $request->all());
+        return redirect()->route('admin.access.category.index')->withFlashSuccess(trans('alerts.backend.category.updated'));
+    }
+
+     public function destroy($id)
+    {
+        $this->category->destroy($id);
+        return redirect()->route('admin.access.category.index')->withFlashSuccess(trans('alerts.backend.category.deleted'));
+    }
+
    
 }

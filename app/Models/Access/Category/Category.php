@@ -4,6 +4,7 @@ namespace App\Models\Access\Category;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Access\Category\Traits\CategoryAccess;
+use App\Models\Access\Category\Traits\Attribute\CategoryAttribute;
 use App\Models\Common;
 use DB;
 
@@ -13,7 +14,7 @@ use DB;
  */
 class Category extends Model
 {
-    use CategoryAccess;
+    use CategoryAccess,CategoryAttribute;
 
     /**
      * The database table used by the model.

@@ -9,3 +9,8 @@ Breadcrumbs::register('admin.access.category.create', function ($breadcrumbs) {
     $breadcrumbs->parent('admin.access.category.index');
     $breadcrumbs->push(trans('menus.backend.access.category.create'), route('admin.access.category.create'));
 });
+
+Breadcrumbs::register('admin.access.category.edit', function ($breadcrumbs, $id) {
+    $breadcrumbs->parent('admin.access.category.index');
+    $breadcrumbs->push(trans('menus.backend.access.category.edit'), route('admin.access.category.edit', $id));
+});

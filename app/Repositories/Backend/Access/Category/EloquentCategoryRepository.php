@@ -16,7 +16,7 @@ class EloquentCategoryRepository implements CategoryRepositoryContract
     {
         if (! is_null(Category::where('id',$id))) {
 
-            return Category::where('id',$id);
+            return Category::find($id);
         }
 
         throw new GeneralException(trans('exceptions.backend.access.Category.not_found'));
@@ -43,6 +43,33 @@ class EloquentCategoryRepository implements CategoryRepositoryContract
         return true;
 
         throw new GeneralException(trans('exceptions.backend.access.category.create_error'));
+    }
+
+    public function update($id, $input)
+    {
+        $category = $this->findOrThrowException($id);
+
+        if ($category->update($input)) {
+            $category->name = $input['name'];
+            $category->save();
+
+            return true;
+        }
+
+        throw new GeneralException(trans('exceptions.backend.access.category.update_error'));
+    }
+
+    public function destroy($id)
+    {
+
+        $category = $this->findOrThrowException($id);
+
+
+        if ($category->delete()) {
+            return true;
+        }
+
+        throw new GeneralException(trans('exceptions.backend.access.category.delete_error'));
     }
 
 }

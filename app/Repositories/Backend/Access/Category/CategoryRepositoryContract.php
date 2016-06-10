@@ -28,5 +28,9 @@ interface CategoryRepositoryContract
 
     public function create($input,$type);
 
+    public function destroy($id);
+
+     public function update($id, $input);
+
 
 }
